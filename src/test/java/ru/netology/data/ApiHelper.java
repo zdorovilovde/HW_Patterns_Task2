@@ -23,9 +23,10 @@ public class ApiHelper {
     static DataGenerator.RegistrationDto sendRequest(DataGenerator.RegistrationDto user) {
         given()
                 .spec(requestSpec)
-                .body(user).when()
+                .body(user)
+                .when().log().all()
                 .post("/api/system/users")
-                .then()
+                .then().log().all()
                 .statusCode(200);
         return user;
     }
