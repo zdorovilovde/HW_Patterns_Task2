@@ -23,15 +23,17 @@ public class DataGenerator {
     public static class Registration {
         private Registration() {
         }
+
+        public static RegistrationDto getUser(String status) {
+            return new RegistrationDto(getRandomLogin(), getRandomPassword(), status);
+        }
+
+        public static RegistrationDto getRegisteredUser(String status) {
+            return ApiHelper.sendRequest(getUser(status));
+        }
     }
 
-    public static RegistrationDto getUser(String status) {
-        return new RegistrationDto(getRandomLogin(), getRandomPassword(), status);
-    }
 
-    public static RegistrationDto getRegistrationUser(String status) {
-        return ApiHelper.sendRequest(getUser(status));
-    }
 
     @Value
     public static class RegistrationDto {
